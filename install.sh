@@ -1,7 +1,7 @@
 # Based on instructiions at https://www.microsoft.com/net/download/linux-package-manager/debian9/sdk-current
-# Install dependency for .NET Core 2
-yum update -y
-yum install -y curl libunwind8 gettext apt-transport-https
+# Install dependency for .NET Core 3.0
+apt-get update -y
+apt-get install -y curl libunwind8 gettext apt-transport-https
 
 # Based on instructions at https://www.microsoft.com/net/download/linux-package-manager/debian9/sdk-current
 # Install microsoft.qpg & Install the .NET Core framework 
@@ -13,6 +13,6 @@ mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
 chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
 chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 
-yum update
-yum install -y dotnet-sdk-3.0
-yum clean
+apt-get update
+apt-get install -y dotnet-sdk-3.0
+apt-get clean

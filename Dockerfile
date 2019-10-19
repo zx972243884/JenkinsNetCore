@@ -2,11 +2,11 @@
 
 USER root
 
-RUN yum update && yum install -y libltdl7
+RUN apt-get update && apt-get install -y libltdl7
 
 ARG dockerGid=999
 
-RUN echo "docker:x:${dockerGid}:jenkins" >> /etc/group \
+RUN echo "docker:x:jenkins:jenkins" >> /etc/group \
 
 COPY install.sh install.sh
 RUN bash install.sh
