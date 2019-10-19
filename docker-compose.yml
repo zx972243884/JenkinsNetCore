@@ -1,7 +1,7 @@
 version: '3'
 services:
   jenkins-core:
-    #image: jenkins/jenkins-dotnet-core:3.0
+    image: jenkinsnetcore
     #build: .
     environment:
       - JAVA_OPTS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai 
@@ -19,4 +19,3 @@ services:
         - /usr/bin/docker:/usr/bin/docker 
         - /etc/localtime:/etc/localtime 
         - /etc/timezone:/etc/timezone
-
