@@ -1,5 +1,6 @@
 ﻿FROM jenkins/jenkins:lts
 
+#镜像名称
 MAINTAINER JenkinsNetCore
 
 USER root
@@ -20,6 +21,7 @@ RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft
 
 # Install the .NET Core framework
 RUN apt-get update
+#使用 3.0 sdk
 RUN apt-get install -y dotnet-sdk-3.0
 RUN apt-get clean
 
