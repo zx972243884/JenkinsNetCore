@@ -1,6 +1,5 @@
-﻿FROM jenkins/jenkins:lts
+﻿FROM jenkins/jenkins
 
-#镜像名称
 MAINTAINER JenkinsNetCore
 
 USER root
@@ -8,8 +7,10 @@ USER root
 # Show distro information!
 RUN uname -a && cat /etc/*release
 
+
+
 # Based on instructiions at https://www.microsoft.com/net/download/linux-package-manager/debian9/sdk-current
-# Install dependency for .NET Core 2
+# Install dependency for .NET Core 3
 RUN apt-get update
 RUN apt-get install -y curl libunwind8 gettext apt-transport-https
 
@@ -18,10 +19,16 @@ RUN apt-get install -y curl libunwind8 gettext apt-transport-https
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list'
+#RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+#    echo "deb http://mirrors.aliyun.com/debian wheezy main contrib non-free" >/etc/apt/sources.list && \
+#    echo "deb-src http://mirrors.aliyun.com/debian wheezy main contrib non-free" >>/etc/apt/sources.list && \
+#    echo "deb http://mirrors.aliyun.com/debian wheezy-updates main contrib non-free" >>/etc/apt/sources.list && \
+#    echo "deb-src http://mirrors.aliyun.com/debian wheezy-updates main contrib non-free" >>/etc/apt/sources.list && \
+ #   echo "deb http://mirrors.aliyun.com/debian-security wheezy/updates main contrib non-free" >>/etc/apt/sources.list && \
+ #   echo "deb-src http://mirrors.aliyun.com/debian-security wheezy/updates main contrib non-free" >>/etc/apt/sources.list
 
 # Install the .NET Core framework
 RUN apt-get update
-#使用 3.0 sdk
 RUN apt-get install -y dotnet-sdk-3.0
 RUN apt-get clean
 
